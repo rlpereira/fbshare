@@ -18,7 +18,7 @@ def share_img(cityid):
 @app.route("/")
 def index():
 	temp = random.randint(0,42)
-	og_url = 'http://104.131.147.80:5050'
+	og_url = 'http://104.131.147.80:5050?temp=%d' % temp
 	og_img_url = 'http://104.131.147.80:5050/share_img/363.png?temp=%d' % temp
 	fb_url = 'https://www.facebook.com/sharer/sharer.php?u=http://104.131.147.80:5050/?temp=%d' % temp
 
