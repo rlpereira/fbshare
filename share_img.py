@@ -50,7 +50,7 @@ def lighten(color, qtd=20):
 
 def generate_card(city_name, temp, condition):
 	temp_icon_spacer = 20
-	icon_name = os.path.join(default_path, condition+'.png')
+	icon_name = os.path.join(default_path + 'icons/', condition+'.png')
 	temp='%d°'%temp
 
 	card_size = 1200, 600
