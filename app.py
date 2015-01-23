@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/share_img/<cityid>.png', methods=['GET'])
 def share_img(cityid):
 	import share_img
-	response = send_file(share_img.generate_card('Porto Alegre, RS', 20, 'day-thunder-rain'),
+	response = send_file(share_img.generate_card('Porto Alegre, RS', int(request.args['temp']), 'day-thunder-rain'),
 		attachment_filename='logo.png',
 		mimetype='image/png')
 
