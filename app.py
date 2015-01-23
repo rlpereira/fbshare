@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim: ts=4 et
 import os
-from flask import Flask, request, Response, send_file
+from flask import Flask, request, Response, send_file, render_template
 
 app = Flask(__name__)
 
@@ -17,10 +17,9 @@ def share_img(cityid):
 
 @app.route("/")
 def index():
-    fname = os.path.join(os.path.dirname(__file__), './index.html')
-    with open(fname) as html:
-        data=html.read()
-    return Response(data % dict(request.args), mimetype="text/html")
+    url = 'http://104.131.147.80:5050/share_img/363.png?temp=24'
+
+    return render_template('index.html', og_url=url)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5050)
