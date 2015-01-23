@@ -15,14 +15,14 @@ def share_img(cityid):
 
 	return response
 
-@app.route("/<city_id>/<temp>")
-def index(city_id, temp):
+@app.route("/<city_id>")
+def index(city_id):
 	city_id = int(city_id)
-	temp = int(temp)
+	temp = int(request.args['temp'])
 
-	og_url = 'http://104.131.147.80:5050/%d/%d' % (city_id, temp)
+	og_url = 'http://104.131.147.80:5050/%d?temp=%d' % (city_id, temp)
 	og_img_url = 'http://104.131.147.80:5050/share_img/%d.png?temp=%d' % (city_id, temp)
-	fb_url = 'https://www.facebook.com/sharer/sharer.php?u=http://104.131.147.80:5050/%d/%d' % (city_id, temp)
+	fb_url = 'https://www.facebook.com/sharer/sharer.php?u=http://104.131.147.80:5050/%d?temp=%d' % (city_id, temp)
 
 	return render_template('index.html', og_url=og_url, fb_url=fb_url, og_img_url=og_img_url)
 
