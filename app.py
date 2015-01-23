@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: ts=4 et
-import os, random
+import os, random, requests, json
 from flask import Flask, request, Response, send_file, render_template
 
 app = Flask(__name__)
@@ -18,7 +18,11 @@ def share_img(cityid):
 @app.route("/<city_id>")
 def index(city_id):
 	city_id = int(city_id)
-	temp = int(request.args['temp'])
+	api_url = 'http://tempo.clic.com.br/api/weather_now?id=%d' % city_id
+	data = requests.get(api_url).content
+	data = data.decode()
+	api_data = json.loads(data)
+	temp = int(api_data['temperature'])
 
 	og_url = 'http://104.131.147.80:5050/%d?temp=%d' % (city_id, temp)
 	og_img_url = 'http://104.131.147.80:5050/share_img/%d.png?temp=%d' % (city_id, temp)
