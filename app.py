@@ -20,7 +20,7 @@ def index():
     fname = os.path.join(os.path.dirname(__file__), './index.html')
     with open(fname) as html:
         data=html.read()
-    return Response(data, mimetype="text/html")
+    return Response(data % dict(request.args), mimetype="text/html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5050)
