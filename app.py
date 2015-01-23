@@ -15,12 +15,12 @@ def share_img(cityid):
 
 	return response
 
-@app.route("/lala")
-def yr_hour_by_hour(uf, city):
-    fname = os.path.join(os.path.dirname(__file__), 'xmls/forecast_hour_by_hour.xml')
-    with open(fname) as xml:
-        data=xml.read()
-    return Response(data, mimetype="text/xml")
+@app.route("/")
+def index():
+    fname = os.path.join(os.path.dirname(__file__), './index.html')
+    with open(fname) as html:
+        data=html.read()
+    return Response(data, mimetype="text/html")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
